@@ -9,15 +9,18 @@
 
 .feedback__form > label {
   width: 100%;
-  margin-bottom: 16px;
   display: flex;
   flex-direction: column;
+
+  margin-bottom: 16px;
 }
 
 .feedback__form input,
 .feedback__form textarea {
-  font: inherit;
   padding: 8px;
+
+  font: inherit;
+
   outline: 1px solid black;
 }
 
@@ -27,5 +30,6 @@
 
 .feedback__form button {
   padding: 10px;
+  
   border: 1px solid black;
 }
