@@ -40,9 +40,9 @@ window.deleteBookmark = function(index) {
     const bookmarks = getBookmarks();
     bookmarks.splice(index, 1);
     saveBookmarks(bookmarks);
-    renderBookmarks();
+    makeBookmarks();
   };
 
 addBookmarkBtn.addEventListener('click', addBookmark);
 
-document.addEventListener('DOMContentLoaded', renderBookmarks);
+document.addEventListener('DOMContentLoaded', makeBookmarks);
