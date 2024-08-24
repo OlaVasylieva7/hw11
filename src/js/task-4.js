@@ -32,7 +32,7 @@ function addBookmark() {
         bookmarks.push(bookmarkUrl); 
         saveBookmarks(bookmarks); 
         bookmarkInput.value = ''; 
-        renderBookmarks(); 
+        makeBookmarks(); 
     }
 }
 
