@@ -1,32 +1,51 @@
-const form = document.querySelector(".feedback__form");
+const timerStartBtn = document.querySelector('.timer-start__button');
+const timerDisplay = document.querySelector('.timer__display');
 
-form.addEventListener("submit", onFormSubmit);
+timerStartBtn.addEventListener('click', initTimer);
 
-getLocalStorage()
 
-function onFormSubmit(e) {
-    e.preventDefault();
+let totalMinutes = 30000;
+let intervalId = null;
+let isAnimated = false;
 
-    const formData = {
-        name: e.target.name.value,
-        message: e.target.message.value
-    }
+function timerFormat(miliseconds) {
+    const seconds = Math.floor(miliseconds / 1000);
+    const milisecondsLeft = miliseconds % 1000;
 
-    console.log(formData);
-
-    localStorage.setItem("feedbackData", JSON.stringify(formData));
-    form.reset();
+    const formatSeconds = seconds.toString().padStart(2, '0');
+    const formatMiliseconds = milisecondsLeft.toString().padStart(3, '0');
+    return `${formatSeconds}.${formatMiliseconds}`;
 }
 
-function getLocalStorage() {
-    const savedData = localStorage.getItem("feedbackData");
-    console.log(savedData);
-
-    if(savedData) {
-        const newData = JSON.parse(savedData)
-        
-        form.elements.name.value = newData.name
-        form.elements.message.value = newData.message
-
-    }
+function updateTimerDisplay() {
+    timerDisplay.textContent = `00:${timerFormat(totalMinutes)}`;
 }
+
+function initTimer() {
+    if (intervalId) {
+        return;
+    }
+
+    timerStartBtn.disabled = true;
+
+    intervalId = setInterval(() => {
+        totalMinutes--;
+        updateTimerDisplay();
+
+        if (totalMinutes <= 10000) {
+            timerDisplay.classList.add('animate');
+            isAnimated = true;
+        }
+
+        if (totalMinutes === 0) {
+            clearInterval(intervalId);
+            intervalId = null;
+            timerStartBtn.disabled = false;
+            display.classList.remove('animate')
+            alert("Time has ended");
+        }
+    }, 1); 
+}
+
+
+    
