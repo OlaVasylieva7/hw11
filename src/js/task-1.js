@@ -66,7 +66,7 @@ function initTimer() {
 
             alert("Time has ended");
         }
-    }, 1000); 
+    }, 60000); 
 }
 
 timerStartBtn.addEventListener('click', initTimer);
